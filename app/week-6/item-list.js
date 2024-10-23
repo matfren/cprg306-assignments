@@ -61,6 +61,7 @@ export default function ItemList() {
         {/* Map all elements to a new array */}
         {shoppingItems.map((element) => ( 
           <Items
+            key={element.id}
             name={element.name}
             quantity={element.quantity}
             category={element.category}
