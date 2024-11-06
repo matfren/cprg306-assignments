@@ -2,19 +2,17 @@
 
 import Items from "./item";
 import { useState } from "react";
-// import jsonItems from "./items.json"; REMOVE
-
 
 export default function ItemList({items}) {
-
+  //useState for sorting by name or category. Initialized with sorting by name.
   const [sortBy, setSortBy] = useState("name");
 
   //Create an array with constructors from the JSON file.
-  let shoppingItems = jsonItems.map((element) => ({...element,
+  let shoppingItems = [...new Set(items.map((element) => ({...element,
     name: new String(element.name),
     quantity: new String(element.quantity),
     category: new String(element.category),
-  }));
+  })))];
 
 
   //Compares each element in the array to the next using the localeCompare() method. 

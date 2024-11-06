@@ -1,11 +1,9 @@
 "use client";
 
-
 import ItemList from "./item-list";
 import NewItem from "./new-item";
 import itemsData from "./items.json";
 import { useState } from "react";
-
 
 export default function Page() {
 
@@ -25,11 +23,12 @@ export default function Page() {
     return (
         <main className="text-center">
             <h1 className="text-green-300 text-4xl font-bold my-10">Shopping List</h1>
-            <NewItem 
+            <NewItem
                onAddItem={handleAddItem}
             />
             <ItemList
-                ItemList={items}
+                // Property for item-list.js
+                items={items}
             />
         </main>
     );

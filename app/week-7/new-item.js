@@ -15,7 +15,7 @@ export default function NewItem({onAddItem}) {
     const handleSubmit = (submitEvent) => {
         //Prevent default script from running.
         submitEvent.preventDefault();
-        //Create item variable.
+        //Create item constant to be added.
         const newItem= {quantity, name, category};
         //If item is null then alert user the field is empty. With valid input run normally. 
         //This works in place of the required attribute since it's not checked on pressing the submit button.
