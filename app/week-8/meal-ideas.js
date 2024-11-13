@@ -4,12 +4,18 @@ import { useEffect, useState } from "react";
 
 //async function is outside of the component.
 async function fetchMealIdeas(ingredient) {
-    //The response will fetch meals that match the ingredient in the link.
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-    //mealData will await a response from response.
-    const mealData = await response.json([]);
-    //the response will be returned in the form of idMeal, strMeal and strMealThumb.
-    return mealData;
+    try {
+        //The response will fetch meals that match the ingredient in the link.
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+        //data will await a response from response.
+        const data = await response.json();
+        //the response will be returned in the form of idMeal, strMeal and strMealThumb.
+        console.log(data);
+        console.dir("TEST");
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export default function MealIdeas({ingredient}) {
@@ -17,10 +23,10 @@ export default function MealIdeas({ingredient}) {
     
     const [meals, setMeals] = useState([]);
 
-    async function loadMealIdeas(ingredient) {
+    async function loadMealIdeas() {
         try {
-            const mealData = await fetchMealIdeas();
-            setMeals(mealData);
+            const data = await fetchMealIdeas();
+            setMeals(data);
         } catch (error) {
             console.log(`Error found:  + ${error}`);
         }
@@ -37,15 +43,15 @@ export default function MealIdeas({ingredient}) {
         })();
     }, [meals]);
     
-    const {idMeal: id, strMeal: mealType, strMealThumb: mealImg} = meals;
+    const {idMeal, strMeal, strMealThumb} = meals;
 
     return (
         <div>
             <h2 className="text-green-300 text-2xl font-bold my-10">Meal Ideas</h2>
-            <div>
-                Meal: {[id, mealType, mealImg]}
+            <ul>
+                Meal: {[idMeal, strMeal, strMealThumb]}
                 {meals.map((mealType) => ({mealType}))}
-            </div>
+            </ul>
         </div>
     );
 };  

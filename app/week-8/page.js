@@ -20,8 +20,10 @@ export default function Page() {
         setItems([...items, item]);
     }
 
-    const [selectedItemName, setSelectedItemName] = useState();
+    const [selectedItemName, setSelectedItemName] = useState("chicken");
     const handleItemSelect = () => {
+        let ingredient = selectedItemName;
+        console.log(ingredient);
         setSelectedItemName(ingredient);
     }
 
@@ -35,7 +37,7 @@ export default function Page() {
                 //Property for item-list.js
                 items={items}
                 //When an item is selected call handleItemSelect to set name of ingredient and get meal ideas.
-                onClick={handleItemSelect}
+                onItemSelect={handleItemSelect}
             />
             <MealIdeas
                 ingredient={selectedItemName}

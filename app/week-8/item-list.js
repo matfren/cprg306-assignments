@@ -42,7 +42,6 @@ export default function ItemList({items, onItemSelect}) {
   //Check the array output in the console.
   //jsonItems.forEach(object => {console.log(object.name + "  " + object.quantity + "  " + object.category)});
 
-
   return (
     <div>
       <div>
@@ -59,7 +58,7 @@ export default function ItemList({items, onItemSelect}) {
         {/* Map all elements to a new array */}
         {shoppingItems.map((element) => ( 
           <Items
-            onClick={onItemSelect}
+            onSelect={onItemSelect}
             key={element.id}
             name={element.name}
             quantity={element.quantity}
